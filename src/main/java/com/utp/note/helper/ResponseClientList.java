@@ -1,4 +1,4 @@
-package com.utp.note.model;
+package com.utp.note.helper;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,41 +19,41 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseClientList<T> {
 
-    @JsonProperty("codigo")
-    private Integer codigo;
+    @JsonProperty("code")
+    private Integer code;
 
-    @JsonProperty("mensaje")
-    private String mensaje;
+    @JsonProperty("message")
+    private String message;
 
     @JsonProperty("data")
     private List<T> data;
 
     public static <T> ResponseClientList<T> setOk(List<T> data) {
         return ResponseClientList.<T>builder()
-                .codigo(Constant.CODIGO_OK)
-                .mensaje(Constant.MENSAJE_OK)
+                .code(Constant.CODE_OK)
+                .message(Constant.MSG_OK)
                 .data(data)
                 .build();
     }
 
     public static <T> ResponseClientList<T> setOk() {
         return ResponseClientList.<T>builder()
-                .codigo(Constant.CODIGO_OK)
-                .mensaje(Constant.MENSAJE_OK)
+                .code(Constant.CODE_OK)
+                .message(Constant.MSG_OK)
                 .build();
     }
 
     public static <T> ResponseClientList<T> setEmpty(String mensaje) {
         return ResponseClientList.<T>builder()
-                .codigo(Constant.CODIGO_EMPTY)
-                .mensaje(mensaje)
+                .code(Constant.CODE_EMPTY)
+                .message(mensaje)
                 .build();
     }
 
     public static <T> ResponseClientList<T> setError(String mensaje) {
         return ResponseClientList.<T>builder()
-                .codigo(Constant.CODIGO_ERROR)
-                .mensaje(mensaje)
+                .code(Constant.CODE_ERROR)
+                .message(mensaje)
                 .build();
     }
 

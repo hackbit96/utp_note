@@ -1,7 +1,7 @@
 package com.utp.note.controller;
 
-import com.utp.note.model.BaseResponse;
-import com.utp.note.model.ResponseClient;
+import com.utp.note.helper.BaseResponse;
+import com.utp.note.helper.ResponseClient;
 import com.utp.note.model.request.SignInRequest;
 import com.utp.note.model.request.SignUpRequest;
 import com.utp.note.model.response.JwtAuthenticationResponse;

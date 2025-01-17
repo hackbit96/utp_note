@@ -3,7 +3,7 @@ package com.utp.note.service.impl;
 import com.utp.note.constant.Constant;
 import com.utp.note.constant.Role;
 import com.utp.note.domain.User;
-import com.utp.note.model.ResponseClient;
+import com.utp.note.helper.ResponseClient;
 import com.utp.note.model.request.SignInRequest;
 import com.utp.note.model.request.SignUpRequest;
 import com.utp.note.model.response.JwtAuthenticationResponse;
@@ -19,6 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Slf4j
@@ -47,6 +48,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
+                .createdAt(LocalDateTime.now())
                 .build();
         try {
             userRepository.save(user);

@@ -1,7 +1,7 @@
 package com.utp.note.exception;
 
 import com.utp.note.constant.Constant;
-import com.utp.note.model.ResponseClient;
+import com.utp.note.helper.ResponseClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
@@ -31,10 +31,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String errors = ex.getBindingResult().getFieldErrors().stream()
-                .map(fieldError -> {
-                    String message = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-                    return fieldError.getField() + ": " + message;
-                })
+                .map(fieldError -> messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()))
                 .reduce((a, b) -> String.join(" - ", a, b))
                 .get();
         return ResponseEntity

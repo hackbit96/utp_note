@@ -1,4 +1,4 @@
-package com.utp.note.model;
+package com.utp.note.helper;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,48 +17,48 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseClient<T> {
 
-    @JsonProperty("codigo")
-    private Integer codigo;
+    @JsonProperty("code")
+    private Integer code;
 
-    @JsonProperty("mensaje")
-    private String mensaje;
+    @JsonProperty("message")
+    private String message;
 
     @JsonProperty("data")
     private T data;
 
     public static <T> ResponseClient<T> setOk(T data) {
         return ResponseClient.<T>builder()
-                .codigo(Constant.CODIGO_OK)
-                .mensaje(Constant.MENSAJE_OK)
+                .code(Constant.CODE_OK)
+                .message(Constant.MSG_OK)
                 .data(data)
                 .build();
     }
 
     public static <T> ResponseClient<T> setOk() {
         return ResponseClient.<T>builder()
-                .codigo(Constant.CODIGO_OK)
-                .mensaje(Constant.MENSAJE_OK)
+                .code(Constant.CODE_OK)
+                .message(Constant.MSG_OK)
                 .build();
     }
 
     public static <T> ResponseClient<T> setEmpty(String mensaje) {
         return ResponseClient.<T>builder()
-                .codigo(Constant.CODIGO_EMPTY)
-                .mensaje(mensaje)
+                .code(Constant.CODE_EMPTY)
+                .message(mensaje)
                 .build();
     }
 
     public static <T> ResponseClient<T> setError(String mensaje) {
         return ResponseClient.<T>builder()
-                .codigo(Constant.CODIGO_ERROR)
-                .mensaje(mensaje)
+                .code(Constant.CODE_ERROR)
+                .message(mensaje)
                 .build();
     }
 
     public static <T> ResponseClient<T> setBase(Integer codigo, String mensaje) {
         return ResponseClient.<T>builder()
-                .codigo(codigo)
-                .mensaje(mensaje)
+                .code(codigo)
+                .message(mensaje)
                 .build();
     }
 

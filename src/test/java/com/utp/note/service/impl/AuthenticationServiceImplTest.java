@@ -3,7 +3,7 @@ package com.utp.note.service.impl;
 import com.utp.note.constant.Constant;
 import com.utp.note.constant.Role;
 import com.utp.note.domain.User;
-import com.utp.note.model.ResponseClient;
+import com.utp.note.helper.ResponseClient;
 import com.utp.note.model.request.SignInRequest;
 import com.utp.note.model.request.SignUpRequest;
 import com.utp.note.model.response.JwtAuthenticationResponse;
@@ -76,8 +76,8 @@ class AuthenticationServiceImplTest {
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signup(signUpRequest);
 
-        assertEquals(Constant.CODIGO_ERROR, response.getCodigo());
-        assertEquals(String.format(Constant.MSG_USER_EXISTS, signUpRequest.getEmail()), response.getMensaje());
+        assertEquals(Constant.CODE_ERROR, response.getCode());
+        assertEquals(String.format(Constant.MSG_USER_EXISTS, signUpRequest.getEmail()), response.getMessage());
     }
 
 
@@ -106,8 +106,8 @@ class AuthenticationServiceImplTest {
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signin(signInRequest);
 
-        assertEquals(Constant.CODIGO_ERROR, response.getCodigo());
-        assertEquals(Constant.MSG_INCORRECT_CREDENTIALS, response.getMensaje());
+        assertEquals(Constant.CODE_ERROR, response.getCode());
+        assertEquals(Constant.MSG_INCORRECT_CREDENTIALS, response.getMessage());
     }
 
     @Test
@@ -116,8 +116,8 @@ class AuthenticationServiceImplTest {
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signin(signInRequest);
 
-        assertEquals(Constant.CODIGO_ERROR, response.getCodigo());
-        assertEquals(Constant.MSG_USER_NO_EXISTS, response.getMensaje());
+        assertEquals(Constant.CODE_ERROR, response.getCode());
+        assertEquals(Constant.MSG_USER_NO_EXISTS, response.getMessage());
     }
 
     @Test
@@ -127,7 +127,7 @@ class AuthenticationServiceImplTest {
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signin(signInRequest);
 
-        assertEquals(Constant.CODIGO_ERROR, response.getCodigo());
-        assertEquals(Constant.MSG_LOGIN_ERROR, response.getMensaje());
+        assertEquals(Constant.CODE_ERROR, response.getCode());
+        assertEquals(Constant.MSG_LOGIN_ERROR, response.getMessage());
     }
 }

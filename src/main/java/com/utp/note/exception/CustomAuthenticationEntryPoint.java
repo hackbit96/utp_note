@@ -2,7 +2,7 @@ package com.utp.note.exception;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.utp.note.constant.Constant;
-import com.utp.note.model.ResponseClient;
+import com.utp.note.helper.ResponseClient;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.MediaType;

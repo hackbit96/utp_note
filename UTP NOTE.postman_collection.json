@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "f54ef0d8-18dc-4359-9b08-3225bc50dc3f",
+		"name": "UTP NOTE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4446149",
+		"_collection_link": "https://solar-station-96692.postman.co/workspace/FINANCIERA-OH~ae0b27d7-90f3-459c-b6b7-7daf70189531/collection/4446149-f54ef0d8-18dc-4359-9b08-3225bc50dc3f?action=share&source=collection_link&creator=4446149"
+	},
+	"item": [
+		{
+			"name": "01 - SIGNUP",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\": \"Orlando\",\r\n    \"lastName\": \"Camavilca Chavez\",\r\n    \"email\": \"orlando.camavilca@gmail.com\",\r\n    \"password\": \"camavilca\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utp/api/v1/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utp",
+						"api",
+						"v1",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "02 - SIGNIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access_token\", data.data.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"orlando.camavilca@gmail.com\",\r\n    \"password\": \"camavilca\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utp/api/v1/auth/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utp",
+						"api",
+						"v1",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "03 - RECORD NOTE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"12\",\r\n    \"content\": \"Lenguaje\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utp/api/v1/note",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utp",
+						"api",
+						"v1",
+						"note"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "04 - GET NOTE",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/utp/api/v1/note",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utp",
+						"api",
+						"v1",
+						"note"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,8 +1,8 @@
 package com.utp.note.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.utp.note.model.ResponseClient;
-import com.utp.note.model.ResponseClientList;
+import com.utp.note.helper.ResponseClient;
+import com.utp.note.helper.ResponseClientList;
 import com.utp.note.model.request.NoteRequest;
 import com.utp.note.model.response.NoteResponse;
 import com.utp.note.service.NoteService;

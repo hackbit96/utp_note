@@ -1,4 +1,4 @@
-package com.utp.note.model;
+package com.utp.note.helper;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -12,10 +12,10 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class BaseResponse {
 
-    @JsonProperty("codigo")
-    private Integer codigo;
+    @JsonProperty("code")
+    private Integer code;
 
-    @JsonProperty("mensaje")
-    private String mensaje;
+    @JsonProperty("message")
+    private String message;
 
 }
