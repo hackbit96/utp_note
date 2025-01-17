@@ -22,7 +22,7 @@ import javax.print.attribute.standard.MediaSize;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "members")
+@Table(name = "usuario")
 public class User implements UserDetails {
 
     @Id
