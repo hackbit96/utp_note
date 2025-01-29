@@ -57,11 +57,14 @@ class AuthenticationServiceImplTest {
 
     @Test
     void testSignup_userCamavilcasNotExist() {
-        when(userRepository.findByEmail(signUpRequest.getEmail())).thenReturn(Optional.empty());
-        when(passwordEncoder.encode(signUpRequest.getPassword())).thenReturn("encodedPassword");
+        when(userRepository.findByEmail(signUpRequest.getEmail()))
+                .thenReturn(Optional.empty());
 
-        JwtAuthenticationResponse jwtResponse = new JwtAuthenticationResponse("mockToken");
-        when(jwtService.generateToken(any(User.class))).thenReturn("mockToken");
+        when(passwordEncoder.encode(signUpRequest.getPassword()))
+                .thenReturn("encodedPassword");
+
+        when(jwtService.generateToken(any(User.class)))
+                .thenReturn("mockToken");
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signup(signUpRequest);
 
@@ -72,7 +75,8 @@ class AuthenticationServiceImplTest {
 
     @Test
     void testSignup_userAlreadyExists() {
-        when(userRepository.findByEmail(signUpRequest.getEmail())).thenReturn(Optional.of(new User()));
+        when(userRepository.findByEmail(signUpRequest.getEmail()))
+                .thenReturn(Optional.of(new User()));
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signup(signUpRequest);
 
@@ -90,12 +94,16 @@ class AuthenticationServiceImplTest {
                 .password("encodedPassword")
                 .role(Role.USER)
                 .build();
-        when(userRepository.findByEmail(signInRequest.getEmail())).thenReturn(Optional.of(user));
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class))).thenReturn(null);
-        when(jwtService.generateToken(any(User.class))).thenReturn("mockToken");
+        when(userRepository.findByEmail(signInRequest.getEmail()))
+                .thenReturn(Optional.of(user));
+        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
+                .thenReturn(null);
+        when(jwtService.generateToken(any(User.class)))
+                .thenReturn("mockToken");
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signin(signInRequest);
 
+        assertEquals(Constant.CODE_OK, response.getCode());
         assertEquals("mockToken", response.getData().getToken());
     }
 
@@ -112,7 +120,8 @@ class AuthenticationServiceImplTest {
 
     @Test
     void testSignin_userNotFound() {
-        when(userRepository.findByEmail(signInRequest.getEmail())).thenReturn(Optional.empty());
+        when(userRepository.findByEmail(signInRequest.getEmail()))
+                .thenReturn(Optional.empty());
 
         ResponseClient<JwtAuthenticationResponse> response = authenticationService.signin(signInRequest);
 

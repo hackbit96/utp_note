@@ -89,10 +89,11 @@ class NoteServiceImplTest {
 
     @Test
     void testGetNotesByUser_Success() {
-        List<Note> notes = new ArrayList<>();
-        notes.add(note);
+        List<Note> notes = List.of(note);
+
         when(noteRepository.findByUser(user))
                 .thenReturn(notes);
+
         when(modelMapper.map(any(Note.class), eq(NoteResponse.class)))
                 .thenReturn(noteResponse);
 
